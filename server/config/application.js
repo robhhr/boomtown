@@ -1,10 +1,10 @@
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
-const express = require('express');
-const fallback = require('express-history-api-fallback');
-const path = require('path');
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const express = require("express");
+const fallback = require("express-history-api-fallback");
+const path = require("path");
 
-module.exports = (app) => {
+module.exports = app => {
   const PORT = process.env.PORT || 8080;
 
   /**
@@ -47,21 +47,21 @@ module.exports = (app) => {
 
   app.use(cookieParser());
 
-  if (process.env.NODE_ENV === 'production') {
-    const root = path.resolve(__dirname, '../public');
+  if (process.env.NODE_ENV === "production") {
+    const root = path.resolve(__dirname, "../public");
 
     // Serve the static front-end from /public when deployed
     app.use(express.static(root));
-    app.use(fallback('index.html', { root }));
+    app.use(fallback("index.html", { root }));
   }
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === "development") {
     // Allow requests from dev server address
     const corsConfig = {
-      origin: 'http://localhost:3000',
+      origin: "http://localhost:3000",
       credentials: true
     };
-    app.set('CORS_CONFIG', corsConfig);
+    app.set("CORS_CONFIG", corsConfig);
 
     // Allow requests from dev server address
     app.use(cors(corsConfig));

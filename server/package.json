@@ -7,6 +7,7 @@
     "jest": "jest --verbose",
     "jest:watch": "npm run jest -- --watch",
     "test": "npm run jest",
+    "format": "prettier \"*.{js,jsx}\" --write",
     "start": "NODE_ENV=production node main.js",
     "start:dev": "NODE_ENV=development nodemon main.js "
   },
@@ -30,7 +31,8 @@
   },
   "devDependencies": {
     "jest-cli": "^24.8.0",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2"
   },
   "jest": {
     "testPathIgnorePatterns": [
