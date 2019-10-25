@@ -14,31 +14,51 @@ module.exports = gql`
   # scalar Date
 
   type Item {
-    _: Boolean
+    id: ID!
+    title: String!
+    imageURL: String
+    description: String!
+    itemowner: User!
+    tags: [Tags]
+    created: Date!
+    borrower: User
   }
 
   type User {
-    _: Boolean
+    id: ID!
+    email: String!
+    fullname: String!
+    bio: String
+    items: [Items]
+    borrower: [Items]
   }
 
   type Tag {
-    _: Boolean
+    id: ID!
+    title: String!
   }
 
   type AuthPayload {
-    _: Boolean
+    id: ID!
+    filename: String!
+    mimetype: String!
+    encoding: String!
+    itemid: ID!
   }
 
   input AssignedTag {
-    _: Boolean
+    id: ID!
+    title: String!
   }
 
   input AssignedBorrower {
-    _: Boolean
+    id: ID!
   }
 
   input NewItemInput {
-    _: Boolean
+    title: String!
+    description: String!
+    tags: [AssignedTag]!
   }
 
   type Query {
