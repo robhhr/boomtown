@@ -14,7 +14,7 @@ module.exports = ({ app, pgResource }) => {
    * to your resolving functions. This is Apollo magic, and it's done using
    * the 'makeExecutableSchema' function provided by the 'graphql-tools' package.
    *
-   * https://www.apollographql.com/docs/apollo-server/v2/api/graphql-tools.html#makeExecutableSchema
+   * https://www.apollographqql.com/docs/apollo-server/~v 2/api/graphql-tools.html#makeExecutableSchema
    */
 
   // @TODO: Refactor to use 'makeExecutableSchema' to wire up your schema to your resolvers:
@@ -36,13 +36,12 @@ module.exports = ({ app, pgResource }) => {
         // throw error
       }
     },
-    schema,
+    schema
   });
 
   apolloServer.applyMiddleware({
     app,
-    // @TODO: Add the CORS_CONFIG from your application configuration
-    cors: undefined,
+    cors: app.get("CORS_CONFIG", 2)
     // -------------------------------
   });
 };
