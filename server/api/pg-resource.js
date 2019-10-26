@@ -10,7 +10,7 @@ module.exports = postgres => {
     async createUser({ fullname, email, password }) {
       const newUserInsert = {
         text: "", // @TODO: Authentication - Server
-        values: [fullname, email, password],
+        values: [fullname, email, password]
       };
       try {
         const user = await postgres.query(newUserInsert);
@@ -29,7 +29,7 @@ module.exports = postgres => {
     async getUserAndPasswordForVerification(email) {
       const findUserQuery = {
         text: "", // @TODO: Authentication - Server
-        values: [email],
+        values: [email]
       };
       try {
         const user = await postgres.query(findUserQuery);
@@ -61,8 +61,8 @@ module.exports = postgres => {
        */
 
       const findUserQuery = {
-        text: "", // @TODO: Basic queries
-        values: [id],
+        text: "SELECT id, username FROM user", // @TODO: Basic queries
+        values: [id]
       };
 
       /**
@@ -93,7 +93,7 @@ module.exports = postgres => {
          */
 
         text: ``,
-        values: idToOmit ? [idToOmit] : [],
+        values: idToOmit ? [idToOmit] : []
       });
       return items.rows;
     },
@@ -104,7 +104,7 @@ module.exports = postgres => {
          *  Get all Items for user using their id
          */
         text: ``,
-        values: [id],
+        values: [id]
       });
       return items.rows;
     },
@@ -115,7 +115,7 @@ module.exports = postgres => {
          *  Get all Items borrowed by user using their id
          */
         text: ``,
-        values: [id],
+        values: [id]
       });
       return items.rows;
     },
@@ -126,7 +126,7 @@ module.exports = postgres => {
     async getTagsForItem(id) {
       const tagsQuery = {
         text: ``, // @TODO: Advanced query Hint: use INNER JOIN
-        values: [id],
+        values: [id]
       };
 
       const tags = await postgres.query(tagsQuery);
@@ -207,6 +207,6 @@ module.exports = postgres => {
           }
         });
       });
-    },
+    }
   };
 };

@@ -7,7 +7,7 @@ const path = require("path");
 module.exports = app => {
   const PORT = process.env.PORT || 8080;
 
-  app.set("PORT", process.env.PORT || "5432");
+  app.set("PORT");
   app.set("PG_HOST", process.env.PG_HOST || "localhost");
   app.set("PG_USER", process.env.PG_USER || "robertoh");
   app.set("PG_PASSWORD", process.env.PG_PASSWORD || "");

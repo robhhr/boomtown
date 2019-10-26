@@ -23,7 +23,11 @@ postgres.on("error", (err, client) => {
 const server = app.listen(PORT, () => {
   console.log(`>> ${chalk.blue("Express running:")} http://localhost:${PORT}`);
 
-  `>> ${chalk.magenta("GraphQL playground:")} http://localhost:${PORT}/graphql`;
+  console.log(
+    `>> ${chalk.magenta(
+      "GraphQL playground:"
+    )} http://localhost:${PORT}/graphql`
+  );
 });
 
 server.on("error", err => {
