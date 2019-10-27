@@ -39,11 +39,8 @@ module.exports = gql`
   }
 
   type AuthPayload {
-    id: ID!
-    filename: String!
-    mimetype: String!
-    encoding: String!
-    itemid: ID!
+    token: String
+    user: User
   }
 
   input AssignedTag {
@@ -53,6 +50,17 @@ module.exports = gql`
 
   input AssignedBorrower {
     id: ID!
+  }
+
+  input SignupInput {
+    fullname: String!
+    email: String!
+    password: String!
+  }
+
+  input LoginInput {
+    email: String!
+    password: String!
   }
 
   input NewItemInput {
@@ -69,6 +77,9 @@ module.exports = gql`
   }
 
   type Mutation {
-    addItem: Boolean
+    login(user: LoginInput!): AuthPayload!
+    logout: Boolean!
+    signup(user: SignupInput!): AuthPayload!
+    addItem(item: NewItemInput!): Item
   }
 `;
