@@ -28,14 +28,20 @@ const queryResolvers = app => ({
     }
   },
   async items() {
-    // @TODO: Replace this mock return statement with the correct items from Postgres
-    return [];
-    // -------------------------------
+    try {
+      const items = await pgResource.getUserById(id);
+      return items;
+    } catch (e) {
+      throw new ApolloError(e);
+    }
   },
   async tags() {
-    // @TODO: Replace this mock return statement with the correct tags from Postgres
-    return [];
-    // -------------------------------
+    try {
+      const tags = await pgResource.getUserById(id);
+      return tags;
+    } catch (e) {
+      throw new ApolloError();
+    }
   }
 });
 
