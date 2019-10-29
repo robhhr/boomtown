@@ -29,7 +29,7 @@ module.exports = postgres => {
     },
     async getUserAndPasswordForVerification(email) {
       const findUserQuery = {
-        text: "SELECT * FROM users WHERE email = $1",
+        text: `SELECT * FROM users WHERE email = $1`,
         values: [email]
       };
       try {
@@ -52,13 +52,15 @@ module.exports = postgres => {
         throw "User is not found";
       }
     },
+    ////// TODO
     async getItems(idToOmit) {
       const items = await postgres.query({
-        text: `SELECT * from items where ownerId !== $1 `,
+        text: `SELECT * from items ${idToOmit ? `WHERE"ownerId" != $1` : ``}`,
         values: idToOmit ? [idToOmit] : []
       });
       return items.rows;
     },
+    ///////////////
     async getItemsForUser(id) {
       const items = await postgres.query({
         text: `SELECT * from items where id = $1`,
@@ -69,7 +71,7 @@ module.exports = postgres => {
     async getBorrowedItemsForUser(id) {
       const items = await postgres.query({
         text: `SELECT * from items WHERE borrowerId = $1`,
-        values: [id]
+        values: [borrowerId]
       });
       return items.rows;
     },

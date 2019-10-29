@@ -19,17 +19,16 @@ const queryResolvers = app => ({
   },
   async user(parent, { id }, { pgResource }, info) {
     try {
-      console.log("jhwedw");
       const user = await pgResource.getUserById(id);
-      console.log(user);
       return user;
     } catch (e) {
       throw new ApolloError(e);
     }
   },
-  async items() {
+  async items(parent, args, { pgResource, user }, info) {
     try {
-      const items = await pgResource.getUserById(id);
+      const items = await pgResource.getItems(args.filter);
+      // console.log(items);
       return items;
     } catch (e) {
       throw new ApolloError(e);
@@ -37,6 +36,7 @@ const queryResolvers = app => ({
   },
   async tags() {
     try {
+      console.log("tagssssssss");
       const tags = await pgResource.getUserById(id);
       return tags;
     } catch (e) {

@@ -1,6 +1,7 @@
 const { ApolloError } = require("apollo-server-express");
 const { AuthenticationError } = require("apollo-server-express");
 const bcrypt = require("bcryptjs");
+const saltRounds = 10;
 
 function setCookie({ tokenName, token, res }) {
   /**
@@ -64,7 +65,11 @@ const mutationResolvers = app => ({
        * and store that instead. The password can be decoded using the original password.
        */
       // @TODO: Use bcrypt to generate a cryptographic hash to conceal the user's password before storing it.
-      const hashedPassword = "";
+      const hashedPassword = req.body.password;
+
+      bcrypt.hash(hashedPassword, saltRounds, function(err, hash) {
+        // Store hash in your password DB.
+      });
       // -------------------------------
 
       const user = await context.pgResource.createUser({
@@ -82,7 +87,7 @@ const mutationResolvers = app => ({
       });
 
       return {
-        toekn,
+        token,
         user
       };
     } catch (e) {
