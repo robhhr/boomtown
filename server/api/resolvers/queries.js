@@ -28,7 +28,6 @@ const queryResolvers = app => ({
   async items(parent, args, { pgResource, user }, info) {
     try {
       const items = await pgResource.getItems(args.filter);
-      // console.log(items);
       return items;
     } catch (e) {
       throw new ApolloError(e);
