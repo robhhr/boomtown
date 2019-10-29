@@ -34,10 +34,9 @@ const queryResolvers = app => ({
       throw new ApolloError(e);
     }
   },
-  async tags() {
+  async tags(parent, args, { pgResource }, info) {
     try {
-      console.log("tagssssssss");
-      const tags = await pgResource.getUserById(id);
+      const tags = await pgResource.getTags("");
       return tags;
     } catch (e) {
       throw new ApolloError();

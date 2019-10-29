@@ -52,7 +52,6 @@ module.exports = postgres => {
         throw "User is not found";
       }
     },
-    ////// TODO
     async getItems(idToOmit) {
       const items = await postgres.query({
         text: `SELECT * from items ${idToOmit ? `WHERE"ownerId" != $1` : ``}`,
@@ -60,7 +59,6 @@ module.exports = postgres => {
       });
       return items.rows;
     },
-    ///////////////
     async getItemsForUser(id) {
       const items = await postgres.query({
         text: `SELECT * from items where id = $1`,
@@ -76,7 +74,7 @@ module.exports = postgres => {
       return items.rows;
     },
     async getTags() {
-      const tags = await postgres.query(/* @TODO: Basic queries */);
+      const tags = await postgres.query(`SELECT * from tags`);
       return tags.rows;
     },
     async getTagsForItem(id) {
