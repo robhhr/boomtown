@@ -113,45 +113,32 @@ module.exports = postgres => {
          */
         postgres.connect((err, client, done) => {
           try {
-            // Begin postgres transaction
             client.query("BEGIN", async err => {
               const { title, description, tags } = item;
+              const newItemQuery = {
+                text: `INSERT INTO items(title, description, imageURL, itemowner) RETURNING *`,
+                values: [title, description, imageURL, itemowner]
+              };
+              const newItem = await postgres.query(newItemQuery);
+              const tagItemQuery = {
+                text: `INSERT INTO itemtags (tagId, itemId) VALUES &{tagsQueryString(itemid)}`,
+                values: [tagId, itemId]
+              };
+              const newItemTag = await postgres.query(tagItemQuery);
 
-              // Generate new Item query
-              // @TODO
-              // -------------------------------
-
-              // Insert new Item
-              // @TODO
-              // -------------------------------
-
-              // Generate tag relationships query (use the'tagsQueryString' helper function provided)
-              // @TODO
-              // -------------------------------
-
-              // Insert tags
-              // @TODO
-              // -------------------------------
-
-              // Commit the entire transaction!
               client.query("COMMIT", err => {
                 if (err) {
                   throw err;
                 }
-                // release the client back to the pool
                 done();
-                // Uncomment this resolve statement when you're ready!
-                // resolve(newItem.rows[0])
-                // -------------------------------
+                resolve(newItem.rows[0]);
               });
             });
           } catch (e) {
-            // Something went wrong
             client.query("ROLLBACK", err => {
               if (err) {
                 throw err;
               }
-              // release the client back to the pool
               done();
             });
             switch (true) {
