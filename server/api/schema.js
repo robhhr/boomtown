@@ -30,7 +30,7 @@ module.exports = gql`
     fullname: String!
     bio: String
     items: [Item]
-    borrower: [Item]
+    borrowed: [Item]
   }
 
   type Tag {
