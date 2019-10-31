@@ -7,7 +7,6 @@ let resolvers = require("../api/resolvers");
 module.exports = ({ app, pgResource }) => {
   resolvers = resolvers(app);
 
-  // @TODO: Refactor to use 'makeExecutableSchema' to wire up your schema to your resolvers:
   const schema = makeExecutableSchema({
     typeDefs,
     resolvers

@@ -40,9 +40,8 @@ function generateToken(user, secret) {
   // -------------------------------
 }
 
-// @TODO: Uncomment these lines later when we add auth
-// const jwt = require("jsonwebtoken")
-// const authMutations = require("./auth")
+// const jwt = require("jsonwebtoken");
+// const authMutations = require("./auth");
 // -------------------------------
 
 const mutationResolvers = app => ({
@@ -54,23 +53,7 @@ const mutationResolvers = app => ({
     { pgResource, req }
   ) {
     try {
-      /**
-       * @TODO: Authentication - Server
-       *
-       * Storing passwords in your project's database requires some basic security
-       * precautions. If someone gains access to your database, and passwords
-       * are stored in 'clear-text' your users accounts immediately compromised.
-       *
-       * The solution is to create a cryptographic hash of the password provided,
-       * and store that instead. The password can be decoded using the original password.
-       */
-      // @TODO: Use bcrypt to generate a cryptographic hash to conceal the user's password before storing it.
-      const hashedPassword = req.body.password;
-
-      bcrypt.hash(hashedPassword, saltRounds, function(err, hash) {
-        // Store hash in your password DB.
-      });
-      // -------------------------------
+      const hashedPassword = await bcrypt.hash(args.user.password, saltRounds);
 
       const user = await context.pgResource.createUser({
         fullname: args.user.fullname,
@@ -107,13 +90,6 @@ const mutationResolvers = app => ({
         args.user.email
       );
       if (!user) throw "User was not found.";
-      /**
-       *  @TODO: Authentication - Server
-       *
-       *  To verify the user has provided the correct password, we'll use the provided password
-       *  they submitted from the login form to decrypt the 'hashed' version stored in out database.
-       */
-      // Use bcrypt to compare the provided password to 'hashed' password stored in your database.
       const valid = false;
       // -------------------------------
       if (!valid) throw "Invalid Password";
@@ -140,18 +116,6 @@ const mutationResolvers = app => ({
     return true;
   },
   async addItem(parent, args, context, info) {
-    /**
-     *  @TODO: Destructuring
-     *
-     *  The 'args' and 'context' parameters of this resolver can be destructured
-     *  to make things more readable and avoid duplication.
-     *
-     *  When you're finished with this resolver, destructure all necessary
-     *  parameters in all of your resolver functions.
-     *
-     *  Again, you may look at the user resolver for an example of what
-     *  destructuring should look like.
-     */
     const user = await jwt.decode(context.token, app.get("JWT_SECRET"));
     const newItem = await context.pgResource.saveNewItem({
       item: args.item,
