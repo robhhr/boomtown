@@ -29,7 +29,7 @@ module.exports = postgres => {
     },
     async getUserAndPasswordForVerification(email) {
       const findUserQuery = {
-        text: `SELECT * FROM users WHERE email = $1`,
+        text: `SELECT * FROM users WHERE email = '$1'`,
         values: [email]
       };
       try {
@@ -68,7 +68,7 @@ module.exports = postgres => {
     },
     async getBorrowedItemsForUser(id) {
       const items = await postgres.query({
-        text: `SELECT * FROM items WHERE borrower = $1`,
+        text: `SELECT * FROM items WHERE "borrowerId" = $1`,
         values: [id]
       });
       return items.rows;
@@ -79,7 +79,7 @@ module.exports = postgres => {
     },
     async getTagsForItem(id) {
       const tagsQuery = {
-        text: `SELECT tagId from itemTags INNER JOIN items ON itemTags.tagId = items.id`,
+        text: `SELECT * from "itemtags" INNER JOIN tags ON "itemtags"."tagId" = tags.id WHERE "itemId" = $1`,
         values: [id]
       };
 
@@ -93,7 +93,7 @@ module.exports = postgres => {
             client.query("BEGIN", async err => {
               const { title, description, tags } = item;
               const newItemQuery = {
-                text: `INSERT INTO items(title, description, imageURL, itemowner) RETURNING *`,
+                text: `INSERT INTO items("title", "description", "imageUrl", "ownerId") VALUES ($1, $2, $3, $4) RETURNING *`,
                 values: [title, description, imageURL, itemowner]
               };
               const newItem = await postgres.query(newItemQuery);
