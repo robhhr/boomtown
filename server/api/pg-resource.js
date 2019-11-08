@@ -9,8 +9,7 @@ module.exports = postgres => {
   return {
     async createUser({ fullname, email, password }) {
       const newUserInsert = {
-        text:
-          "INSERT INTO users (fullname, email, password) VALUES ($1 $2 $3) RETURNING *",
+        text: `INSERT INTO users (fullname, email, password) VALUES ($1, $2, $3) RETURNING *`,
         values: [fullname, email, password]
       };
       try {
@@ -29,7 +28,7 @@ module.exports = postgres => {
     },
     async getUserAndPasswordForVerification(email) {
       const findUserQuery = {
-        text: `SELECT * FROM users WHERE email = '$1'`,
+        text: `SELECT * FROM users WHERE email = $1`,
         values: [email]
       };
       try {
@@ -93,15 +92,20 @@ module.exports = postgres => {
             client.query("BEGIN", async err => {
               const { title, description, tags } = item;
               const newItemQuery = {
-                text: `INSERT INTO items("title", "description", "imageUrl", "ownerId") VALUES ($1, $2, $3, $4) RETURNING *`,
-                values: [title, description, imageURL, itemowner]
+                text: `INSERT INTO items("title", "description", "ownerId") VALUES ($1, $2, $3) RETURNING *`,
+                values: [title, description, user.id]
               };
               const newItem = await client.query(newItemQuery);
+              const newItemId = newItem.rows[0].id;
               const tagItemQuery = {
                 text: `INSERT INTO itemtags ("tagId", "itemId") VALUES ${tagsQueryString(
-                  itemid
+                  tags,
+                  newItemId,
+                  ""
                 )}`,
-                values: [tagId, itemId]
+                values: tags.map(tag => {
+                  return tag.id;
+                })
               };
               const newItemTag = await client.query(tagItemQuery);
 
