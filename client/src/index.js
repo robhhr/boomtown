@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -57,17 +57,17 @@ import theme from "./theme";
  */
 
 // @TODO: Remove this import once you have your router working below
-import Home from "./pages/Home";
+// import Home from "./pages/Home";
 // -------------------------------
 
 import "./index.css";
-import Layout from "./routes/Layout";
+import Routes from "./routes";
 
 const App = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <Layout />
+      <Routes />
       {/* <Home /> */}
     </MuiThemeProvider>
   );
