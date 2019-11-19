@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import ItemPreviewProvider from "./context/ItemPreviewProvider";
 
 class ShareForm extends Component {
   constructor(props) {
@@ -8,9 +9,13 @@ class ShareForm extends Component {
 
   render() {
     return (
-      <div>
-        <p>This is the share form.</p>
-      </div>
+      <ItemPreviewProvider.Consumer>
+        {({ state, updatePreview, resetPreview }) => {
+          <div>
+            <p>This is the share form.</p>
+          </div>;
+        }}
+      </ItemPreviewProvider.Consumer>
     );
   }
 }

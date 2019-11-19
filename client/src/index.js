@@ -62,13 +62,16 @@ import theme from "./theme";
 
 import "./index.css";
 import Routes from "./routes";
+import ItemPreviewProvider from "./components/ShareItemForm/context/ItemPreviewProvider";
 
 const App = () => {
   return (
     <MuiThemeProvider theme={theme}>
-      <CssBaseline />
-      <Routes />
-      {/* <Home /> */}
+      <ItemPreviewProvider>
+        <CssBaseline />
+        <Routes />
+        {/* <Home /> */}
+      </ItemPreviewProvider>
     </MuiThemeProvider>
   );
 };
