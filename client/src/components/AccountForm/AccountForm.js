@@ -7,20 +7,22 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import React, { Component } from "react";
 import Typography from "@material-ui/core/Typography";
+import { graphql, compose } from "react-apollo";
+import {
+  LOGIN_MUTATION,
+  SIGNUP_MUTATION,
+  VIEWER_QUERY
+} from "../../apollo/queries";
+
 /**
  * @TODO: Uncomment the following lines when authentication is added to the form
  *
  *
- * import {
- *    LOGIN_MUTATION,
- *    SIGNUP_MUTATION,
- *    VIEWER_QUERY
- * } from '../../apollo/queries';
- * import { graphql, compose } from 'react-apollo';
  * import validate from './helpers/validation'
  */
 
 import styles from "./styles";
+// import { SIGNUP_MUTATION } from "../../apollo/queries";
 
 class AccountForm extends Component {
   constructor(props) {
@@ -143,4 +145,22 @@ class AccountForm extends Component {
 
 // @TODO: Use compose to add the login and signup mutations to this components props.
 // @TODO: Refetch the VIEWER_QUERY to reload the app and access authenticated routes.
-export default withStyles(styles)(AccountForm);
+export default compose(
+  graphql(SIGNUP_MUTATION, {
+    options: {
+      query: {
+        VIEWER_QUERY
+      },
+      name: "signup"
+    }
+  }),
+  graphql(SIGNUP_MUTATION, {
+    options: {
+      name: "signup",
+      query: {
+        VIEWER_QUERY
+      }
+    }
+  }),
+  withStyles(styles)(AccountForm)
+);
