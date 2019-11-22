@@ -61,12 +61,12 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <MuiThemeProvider theme={theme}>
-        {/* <ViewerProvider> */}
-        <ItemPreviewProvider>
-          <CssBaseline />
-          <Routes />
-        </ItemPreviewProvider>
-        {/* </ViewerProvider> */}
+        <ViewerProvider>
+          <ItemPreviewProvider>
+            <CssBaseline />
+            <Routes />
+          </ItemPreviewProvider>
+        </ViewerProvider>
       </MuiThemeProvider>
     </ApolloProvider>
   );
