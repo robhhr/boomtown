@@ -8,11 +8,11 @@ const ItemFields = gql`
   fragment ItemFields on Item {
     # @TODO: Create a fragment to query the following fields for an item:
     #
-    # id
+    id
     # title
     # imageurl
     # description
-    # created
+    # createdAp
     # tags (id and title fields)
     # itemowner (id, fullname, email, and bio fields)
     # borrower (id, fullname, email, and bio fields)
@@ -23,6 +23,7 @@ const ItemFields = gql`
 `;
 export const ITEM_QUERY = gql`
   query item($id: ID!) {
+    id
     # @TODO: Query an item by its id and return the ItemFields fragment.
   }
   ${ItemFields}
@@ -30,6 +31,7 @@ export const ITEM_QUERY = gql`
 
 export const ALL_ITEMS_QUERY = gql`
   query items($filter: ID) {
+    id
     # @TODO: Query items (optionally by tag id) and return the ItemFields fragment.
   }
   ${ItemFields}
@@ -37,6 +39,7 @@ export const ALL_ITEMS_QUERY = gql`
 
 export const ALL_USER_ITEMS_QUERY = gql`
   query user($id: ID!) {
+    id
     # @TODO: Query the bio, email, fullname, items, and borrowed for the user by id
     # Use the ItemFields fragment for the items and borrowed fields.
   }
@@ -45,12 +48,14 @@ export const ALL_USER_ITEMS_QUERY = gql`
 
 export const ALL_TAGS_QUERY = gql`
   query {
+    id
     # @TODO: Query the id and title fields for tags.
   }
 `;
 
 export const ADD_ITEM_MUTATION = gql`
   mutation addItem($item: NewItemInput!) {
+    id
     # @TODO: Pass the item and image into the addItem mutation as arguments
     # and return the new item id when the mutation is complete.
   }
@@ -62,11 +67,18 @@ export const ADD_ITEM_MUTATION = gql`
 
 export const VIEWER_QUERY = gql`
   query {
+    id
     # @TODO: Query the id, email, fullname, and bio fields for the viewer.
   }
 `;
 export const LOGOUT_MUTATION = gql`
   mutation {
+    login(user: user) {
+      token
+      user {
+        id
+      }
+    }
     # @TODO: Run the logout mutation.
   }
 `;

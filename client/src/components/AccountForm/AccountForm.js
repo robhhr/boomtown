@@ -13,12 +13,12 @@ import {
   SIGNUP_MUTATION,
   VIEWER_QUERY
 } from "../../apollo/queries";
+import validate from "./helpers/validation";
 
 /**
  * @TODO: Uncomment the following lines when authentication is added to the form
  *
  *
- * import validate from './helpers/validation'
  */
 
 import styles from "./styles";
@@ -162,5 +162,5 @@ export default compose(
       }
     }
   }),
-  withStyles(styles)(AccountForm)
-);
+  withStyles(styles)
+)(AccountForm);
