@@ -22,7 +22,6 @@ import validate from "./helpers/validation";
  */
 
 import styles from "./styles";
-// import { SIGNUP_MUTATION } from "../../apollo/queries";
 
 class AccountForm extends Component {
   constructor(props) {
@@ -47,53 +46,41 @@ class AccountForm extends Component {
               <FormControl fullWidth className={classes.formControl}>
                 <InputLabel htmlFor="fullname">Username</InputLabel>
                 <Field name="fullname">
-                  {/* @TODO: Wrap in a Final Form <Field /> */}
                   {({ input }) => (
                     <Input
                       id="fullname"
                       type="text"
-                      inputProps={{
-                        autoComplete: "off"
-                      }}
-                      value={Input.value}
+                      inputProps={{ ...input, autoComplete: "off" }}
+                      value={input.value}
                     />
                   )}
                 </Field>
-                {/* @TODO: Close Final Form <Field /> */}
               </FormControl>
             )}
             <FormControl fullWidth className={classes.formControl}>
               <InputLabel htmlFor="email">Email</InputLabel>
               <Field name="email">
-                {/* @TODO: Wrap in a Final Form <Field /> */}
                 {({ input }) => (
                   <Input
                     id="email"
                     type="text"
-                    inputProps={{
-                      autoComplete: "off"
-                    }}
-                    value={Input.value}
+                    inputProps={{ ...input, autoComplete: "off" }}
+                    value={input.value}
                   />
                 )}
-                {/* @TODO: Close Final Form <Field /> */}
               </Field>
             </FormControl>
             <FormControl fullWidth className={classes.formControl}>
               <InputLabel htmlFor="password">Password</InputLabel>
               <Field name="password">
-                {/* @TODO: Wrap in a Final Form <Field /> */}
                 {({ input }) => (
                   <Input
                     id="password"
                     type="password"
-                    inputProps={{
-                      autoComplete: "off"
-                    }}
-                    value={Input.value}
+                    inputProps={{ ...input, autoComplete: "off" }}
+                    value={input.value}
                   />
                 )}
-                {/* @TODO: Close Final Form <Field /> */}
               </Field>
             </FormControl>
             <FormControl className={classes.formControl}>
@@ -122,6 +109,9 @@ class AccountForm extends Component {
                     onClick={() => {
                       // @TODO: Reset the form on submit
                       this.setState({
+                        fullname: "",
+                        email: "",
+                        password: "",
                         formToggle: !this.state.formToggle
                       });
                     }}
