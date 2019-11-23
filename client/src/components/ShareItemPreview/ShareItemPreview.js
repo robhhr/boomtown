@@ -10,6 +10,8 @@ export class ShareItemPreview extends Component {
         {({ state }) => (
           <>
             <h1>{state.title}</h1>
+            <img src={state.imageURL} />
+            <p>{state.description}</p>
           </>
         )}
       </ItemPreviewContext.Consumer>

@@ -9,11 +9,11 @@ import React, { Component } from "react";
 import Typography from "@material-ui/core/Typography";
 import { graphql, compose } from "react-apollo";
 import {
-  LOGIN_MUTATION,
   SIGNUP_MUTATION,
+  LOGIN_MUTATION,
   VIEWER_QUERY
 } from "../../apollo/queries";
-import validate from "./helpers/validation";
+// import validate from "./helpers/validation";
 
 /**
  * @TODO: Uncomment the following lines when authentication is added to the form
@@ -27,19 +27,34 @@ class AccountForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formToggle: true
+      formToggle: true // if form toggle true then login if false the signup
     };
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, login, signup } = this.props;
+    const validateValues = values => {
+      console.log(values);
+    };
 
     return (
       <Form
         onSubmit={values => {
+          const a = {
+            variables: {
+              user: values
+            }
+          };
           console.log(values);
+          if (this.state.formToggle) {
+            console.log(this.props);
+            login(a);
+            console.log("im trying to login");
+          } else {
+            console.log("im trying to signup");
+          }
         }}
-        // validate={}
+        // validate={validateValues}
         render={({ handleSubmit, form }) => (
           <form onSubmit={handleSubmit} className={classes.accountForm}>
             {!this.state.formToggle && (
@@ -140,17 +155,17 @@ export default compose(
     options: {
       query: {
         VIEWER_QUERY
-      },
-      name: "signup"
-    }
+      }
+    },
+    name: "signup"
   }),
-  graphql(SIGNUP_MUTATION, {
+  graphql(LOGIN_MUTATION, {
     options: {
-      name: "signup",
       query: {
         VIEWER_QUERY
       }
-    }
+    },
+    name: "loginMutation"
   }),
   withStyles(styles)
 )(AccountForm);

@@ -6,58 +6,87 @@ import gql from "graphql-tag";
 
 const ItemFields = gql`
   fragment ItemFields on Item {
-    # @TODO: Create a fragment to query the following fields for an item:
-    #
     id
-    # title
-    # imageurl
-    # description
-    # createdAp
-    # tags (id and title fields)
-    # itemowner (id, fullname, email, and bio fields)
-    # borrower (id, fullname, email, and bio fields)
-    #
-    # See the Apollo docs for instructions on how to use fragments:
-    # https://www.apollographql.com/docs/angular/features/fragments.html
+    title
+    imageURL
+    description
+    created
+    tags {
+      id
+      title
+    }
+    itemowner {
+      id
+      fullname
+      email
+      bio
+    }
+    borrower {
+      id
+      fullname
+      email
+      bio
+    }
   }
 `;
+// See the Apollo docs for instructions on how to use fragments:
+// https://www.apollographql.com/docs/angular/features/fragments.html
 export const ITEM_QUERY = gql`
   query item($id: ID!) {
-    id
-    # @TODO: Query an item by its id and return the ItemFields fragment.
+    item(id: $id) {
+      ...ItemFields
+    }
   }
   ${ItemFields}
 `;
 
 export const ALL_ITEMS_QUERY = gql`
   query items($filter: ID) {
-    id
-    # @TODO: Query items (optionally by tag id) and return the ItemFields fragment.
+    item(filter: $filter) {
+      ...ItemFields
+    }
   }
   ${ItemFields}
 `;
 
 export const ALL_USER_ITEMS_QUERY = gql`
   query user($id: ID!) {
-    id
-    # @TODO: Query the bio, email, fullname, items, and borrowed for the user by id
-    # Use the ItemFields fragment for the items and borrowed fields.
+    user(id: $id) {
+      bio
+      email
+      fullname
+      items {
+        ...ItemFields
+      }
+      borrowed {
+        ...itemFields
+      }
+    }
   }
   ${ItemFields}
 `;
 
 export const ALL_TAGS_QUERY = gql`
   query {
-    id
-    # @TODO: Query the id and title fields for tags.
+    tags {
+      id
+      title
+    }
   }
 `;
 
 export const ADD_ITEM_MUTATION = gql`
   mutation addItem($item: NewItemInput!) {
-    id
-    # @TODO: Pass the item and image into the addItem mutation as arguments
-    # and return the new item id when the mutation is complete.
+    addItem(item: $item) {
+      id
+      title
+      description
+      tags {
+        id
+        title
+      }
+      imageURL
+    }
   }
 `;
 
@@ -67,44 +96,43 @@ export const ADD_ITEM_MUTATION = gql`
 
 export const VIEWER_QUERY = gql`
   query {
-    id
-    # @TODO: Query the id, email, fullname, and bio fields for the viewer.
+    user {
+      id
+      email
+      fullname
+      bio
+    }
   }
 `;
 export const LOGOUT_MUTATION = gql`
-  mutation {
-    login(user: user) {
+  mutation logout($user: Logout!) {
+    logout(user: $user) {
       token
       user {
         id
       }
     }
-    # @TODO: Run the logout mutation.
   }
 `;
 
 export const SIGNUP_MUTATION = gql`
   mutation signup($user: SignupInput!) {
-    signup(user: user) {
+    signup(user: $user) {
       token
       user {
         id
       }
     }
-    # @TODO: Pass the user into the signup mutation as an argument
-    # and return the token and user id.
   }
 `;
 
 export const LOGIN_MUTATION = gql`
   mutation login($user: LoginInput!) {
-    login(user: id) {
+    login(user: $user) {
       token
       user {
         id
       }
     }
-    # @TODO: Pass the user into the login mutation as an argument
-    # and return the token and user id.
   }
 `;

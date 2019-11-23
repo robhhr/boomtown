@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ApolloProvider } from "react-apollo";
-import { BrowserRouter } from "react-router-dom";
+// import { BrowserRouter } from "react-router-dom";
 // import { Provider as ReduxProvider } from "react-redux";
 import registerServiceWorker from "./registerServiceWorker";
 import theme from "./theme";
@@ -61,9 +61,9 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <MuiThemeProvider theme={theme}>
+        <CssBaseline />
         <ViewerProvider>
           <ItemPreviewProvider>
-            <CssBaseline />
             <Routes />
           </ItemPreviewProvider>
         </ViewerProvider>
