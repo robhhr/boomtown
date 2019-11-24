@@ -28,7 +28,7 @@ module.exports = postgres => {
     },
     async getUserAndPasswordForVerification(email) {
       const findUserQuery = {
-        text: `SELECT * FROM users WHERE email = $1`,
+        text: "SELECT * FROM users WHERE email=$1",
         values: [email]
       };
       try {
@@ -92,7 +92,7 @@ module.exports = postgres => {
             client.query("BEGIN", async err => {
               const { title, description, tags } = item;
               const newItemQuery = {
-                text: `INSERT INTO items("title", "description", "ownerId") VALUES ($1, $2, $3) RETURNING *`,
+                text: `INSERT INTO items(title, description, "ownerId") VALUES ($1, $2, $3) RETURNING *`,
                 values: [title, description, user.id]
               };
               const newItem = await client.query(newItemQuery);

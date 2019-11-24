@@ -10,19 +10,27 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
+import ViewerContext, { ViewerProvider } from "../context/ViewerProvider";
 
 const Routes = () => {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/items" component={Items} />
-        <Route path="/welcome" component={Home} />
-        <Route path="/share" component={Share} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/profile/user:Id" component={Profile} />
-        <Redirect from="/" to="/welcome" /* to='/items' */ />
-      </Switch>
-    </Router>
+    <ViewerContext.Consumer>
+      {({ viewer, loading }) => {
+        console.log("viewer", viewer);
+        return (
+          <Router>
+            <Switch>
+              <Route exact path="/items" component={Items} />
+              <Route path="/welcome" component={Home} />
+              <Route path="/share" component={Share} />
+              <Route path="/profile" component={Profile} />
+              <Route path="/profile/user:Id" component={Profile} />
+              <Redirect from="/" to="/welcome" /* to='/items' */ />
+            </Switch>
+          </Router>
+        );
+      }}
+    </ViewerContext.Consumer>
   );
 };
 

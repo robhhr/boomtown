@@ -95,8 +95,8 @@ export const ADD_ITEM_MUTATION = gql`
  */
 
 export const VIEWER_QUERY = gql`
-  query {
-    user {
+  query viewer {
+    viewer {
       id
       email
       fullname

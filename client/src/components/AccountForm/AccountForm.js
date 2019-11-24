@@ -33,14 +33,14 @@ class AccountForm extends Component {
 
   render() {
     const { classes, login, signup } = this.props;
-    const validateValues = values => {
-      console.log(values);
-    };
+    // const validateValues = values => {
+    //   console.log(values);
+    // };
 
     return (
       <Form
         onSubmit={values => {
-          const a = {
+          const user = {
             variables: {
               user: values
             }
@@ -48,7 +48,7 @@ class AccountForm extends Component {
           console.log(values);
           if (this.state.formToggle) {
             console.log(this.props);
-            login(a);
+            login(user);
             console.log("im trying to login");
           } else {
             console.log("im trying to signup");
@@ -165,7 +165,7 @@ export default compose(
         VIEWER_QUERY
       }
     },
-    name: "loginMutation"
+    name: "login"
   }),
   withStyles(styles)
 )(AccountForm);

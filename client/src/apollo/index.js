@@ -8,7 +8,7 @@ const httpLink = createHttpLink({
   includeExtensions: true,
   uri:
     process.env.NODE_ENV !== "production"
-      ? "http://localhost:3000/graphql"
+      ? "http://localhost:8080/graphql"
       : null,
   credentials: process.env.NODE_ENV === "production" ? "same-origin" : "include"
 });
