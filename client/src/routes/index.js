@@ -3,6 +3,7 @@ import Items from "../pages/Items";
 import Home from "../pages/Home/Home";
 import Share from "../pages/Share/Share";
 import Profile from "../pages/Profile/Profile";
+import ViewerContext from "../context/ViewerProvider";
 
 import {
   BrowserRouter as Router,
@@ -10,7 +11,6 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
-import ViewerContext, { ViewerProvider } from "../context/ViewerProvider";
 
 const Routes = () => {
   return (

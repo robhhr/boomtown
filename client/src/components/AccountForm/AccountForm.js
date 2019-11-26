@@ -87,11 +87,10 @@ class AccountForm extends Component {
             </FormControl>
             <FormControl fullWidth className={classes.formControl}>
               <InputLabel htmlFor="password">Password</InputLabel>
-              <Field name="password">
+              <Field name="password" type="password">
                 {({ input }) => (
                   <Input
                     id="password"
-                    type="password"
                     inputProps={{ ...input, autoComplete: "off" }}
                     value={input.value}
                   />
