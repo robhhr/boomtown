@@ -15,6 +15,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 */
 import ShareItemForm from "../../components/ShareItemForm";
+import { ShareItemPreview } from "../../components/ShareItemPreview/ShareItemPreview";
 
 const Share = ({ classes, viewer }) => {
   return (
@@ -22,6 +23,7 @@ const Share = ({ classes, viewer }) => {
       <p>
         This is the share page located at <code>/share</code>.
         <ShareItemForm />
+        <ShareItemPreview />
         {/* <ShareItemForm />        <ShareItemPreview /> */}
       </p>
     </div>

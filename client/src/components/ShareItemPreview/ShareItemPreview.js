@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { ItemPreviewContext } from "../ShareItemForm/context/ItemPreviewProvider";
+import { ItemPreviewContext } from "../../context/ItemPreviewProvider";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
+import CardPreview from "./CardPreview/CardPreview";
 
 export class ShareItemPreview extends Component {
   render() {
@@ -9,10 +10,7 @@ export class ShareItemPreview extends Component {
       <ItemPreviewContext.Consumer>
         {({ state }) => (
           <>
-            {/* <h1>{state.title}</h1>
-            <img src={state.imageURL} />
-            <p>{state.description}</p> */}
-            <p>heya</p>
+            <CardPreview />
           </>
         )}
       </ItemPreviewContext.Consumer>

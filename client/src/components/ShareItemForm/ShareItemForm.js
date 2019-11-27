@@ -26,72 +26,84 @@ class ShareItemForm extends Component {
         {({ state, updatePreview, resetPreview }) => (
           <Form
             onSubmit={values => {
-              // const user = {
-              //   variables: {
-              //     user: values
-              //   }
-              // };
+              const user = {
+                variables: {
+                  user: values
+                }
+              };
               // console.log("hey");
             }}
             render={({ handleSubmit, form }) => (
-              <form onSubmit={handleSubmit}>
+              <form className={classes.mainForm} onSubmit={handleSubmit}>
                 <h1>Share. Borrow. Prosper.</h1>
 
-                {/* Item image */}
-                <FormControl>
-                  <Field
-                    name="imageURL"
-                    render={({ input }) => (
-                      <Button color="primary">Select an image</Button>
-                    )}
-                  />
-                </FormControl>
+                <div>
+                  {/* Item image */}
+                  <FormControl className={classes.formControl}>
+                    <Field
+                      name="imageURL"
+                      render={({ input }) => (
+                        <Button color="primary">Select an image</Button>
+                      )}
+                    />
+                  </FormControl>
 
-                {/* Item name */}
-                <FormControl className={classes.FormControl}>
-                  <InputLabel htmlFor="name">Name your Item</InputLabel>
-                  <Field name="item-name">
-                    {({ input }) => (
-                      <Input
-                        id="item-name"
-                        type="text"
-                        inputProps={{ ...input, autoComplete: "off" }}
-                        value={input.value}
-                      />
-                    )}
-                  </Field>
-                </FormControl>
+                  {/* Item name */}
+                  <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="name" className={classes.itemName}>
+                      Name your Item
+                    </InputLabel>
+                    <Field name="item-name">
+                      {({ input }) => (
+                        <Input
+                          id="item-name"
+                          type="text"
+                          inputProps={{ ...input, autoComplete: "off" }}
+                          value={input.value}
+                        />
+                      )}
+                    </Field>
+                  </FormControl>
 
-                {/* Item description */}
-                <FormControl>
-                  <InputLabel htmlFor="description">
-                    Describe your Item
-                  </InputLabel>
-                  <Field name="item-description">
-                    {({ input }) => (
-                      <Input
-                        id="item-description"
-                        type="text"
-                        inputProps={{ ...input, autoComplete: "off" }}
-                        value={input.value}
-                      />
-                    )}
-                  </Field>
-                </FormControl>
+                  {/* Item description */}
+                  <FormControl className={classes.formControl}>
+                    <InputLabel
+                      htmlFor="description"
+                      className={classes.itemInput}
+                    >
+                      Describe your Item
+                    </InputLabel>
+                    <Field name="item-description">
+                      {({ input }) => (
+                        <Input
+                          id="item-description"
+                          type="text"
+                          inputProps={{ ...input, autoComplete: "off" }}
+                          value={input.value}
+                        />
+                      )}
+                    </Field>
+                  </FormControl>
 
-                {/* Item tags */}
-                <FormControl>
-                  <InputLabel htmlFor="item-tags">Add some tags</InputLabel>
-                  {/* <Field
+                  {/* Item tags */}
+                  <FormControl className={classes.formControl}>
+                    <InputLabel
+                      htmlFor="item-tags"
+                      className={classes.tagsInput}
+                    >
+                      Add some tags
+                    </InputLabel>
+                    {/* <Field
                     render={({ input }) => (
                     )}
                   /> */}
-                </FormControl>
+                  </FormControl>
 
-                {/* Share button */}
-                <Button type="submit" varient="outlined">
-                  Share
-                </Button>
+                  {/* Share button */}
+                  <Button type="submit" varient="outlined">
+                    Share
+                  </Button>
+                </div>
               </form>
             )}
           />
