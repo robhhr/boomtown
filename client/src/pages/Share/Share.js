@@ -1,7 +1,7 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import styles from "./styles";
-// import ShareItemForm from "../../components/ShareItemForm";
+// import styles from "./styles";
+// import ShareForm from "../../components/ShareItemForm/ShareItemForm";
 // import ShareItemPreview from "../../components/ShareItemPreview/index";
 /* 
   TODO: Create ShareItemFrom and ShareItemPreview in the components dir
@@ -14,18 +14,18 @@ import styles from "./styles";
   Hint: It should look like any other Item card.
 
 */
-// import ShareItemForm from '../../components/ShareItemForm';
+import ShareItemForm from "../../components/ShareItemForm";
 
-const Share = ({ classes }) => {
+const Share = ({ classes, viewer }) => {
   return (
     <div>
       <p>
         This is the share page located at <code>/share</code>.
-        {/* <ShareForm /> */}
-        {/* <ShareItemPreview /> */}
+        <ShareItemForm />
+        {/* <ShareItemForm />        <ShareItemPreview /> */}
       </p>
     </div>
   );
 };
 
-export default withStyles(styles)(Share);
+export default Share;

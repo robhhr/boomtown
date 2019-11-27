@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ItemPreviewContext from "./context/ItemPreviewProvider";
+import { ItemPreviewContext } from "../../context/ItemPreviewProvider";
 import { Form, Field } from "react-final-form";
 import {
   FormControl,
@@ -8,27 +8,30 @@ import {
   Select,
   Button
 } from "@material-ui/core";
-import Input from "@material-ui/core/Input";
+import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 
-class ShareForm extends Component {
+class ShareItemForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { value: "" };
   }
 
   render() {
-    console.log(this.props.classes);
+    const { classes } = this.props;
+    // console.log(this.props.classes);
+
     return (
       <ItemPreviewContext.Consumer>
-        {({ state, updatePreview, resetPreview }) => {
+        {({ state, updatePreview, resetPreview }) => (
           <Form
             onSubmit={values => {
-              const user = {
-                variables: {
-                  user: values
-                }
-              };
+              // const user = {
+              //   variables: {
+              //     user: values
+              //   }
+              // };
+              // console.log("hey");
             }}
             render={({ handleSubmit, form }) => (
               <form onSubmit={handleSubmit}>
@@ -39,9 +42,7 @@ class ShareForm extends Component {
                   <Field
                     name="imageURL"
                     render={({ input }) => (
-                      <>
-                        <Button color="primary">Select an image</Button>
-                      </>
+                      <Button color="primary">Select an image</Button>
                     )}
                   />
                 </FormControl>
@@ -81,12 +82,10 @@ class ShareForm extends Component {
                 {/* Item tags */}
                 <FormControl>
                   <InputLabel htmlFor="item-tags">Add some tags</InputLabel>
-                  <Select
-                    fullWidth
-                    multiple
-                    value={input.value}
-                    input={<Input />}
-                  ></Select>
+                  {/* <Field
+                    render={({ input }) => (
+                    )}
+                  /> */}
                 </FormControl>
 
                 {/* Share button */}
@@ -95,11 +94,11 @@ class ShareForm extends Component {
                 </Button>
               </form>
             )}
-          />;
-        }}
+          />
+        )}
       </ItemPreviewContext.Consumer>
     );
   }
 }
 
-export default withStyles(styles)(ShareForm);
+export default withStyles(styles)(ShareItemForm);
