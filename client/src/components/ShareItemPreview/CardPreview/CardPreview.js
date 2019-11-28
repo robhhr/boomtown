@@ -12,8 +12,8 @@ import { withStyles } from "@material-ui/core/styles";
 const CardPreview = ({ imageURL, itemowner, title, description }) => {
   const useStyles = makeStyles({
     card: {
-      width: 425,
-      height: 500,
+      width: 415,
+      height: 520,
       marginRight: 50
     }
   });

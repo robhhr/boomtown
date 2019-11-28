@@ -6,19 +6,20 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import BoomtownLogo from "./BoomtownLogo/BoomtownLogo";
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    margin: 0,
+    padding: 0
   },
   toolbar: {
     height: 65,
-    alignItems: "flex-start",
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(2)
+    justifyContent: "space-between",
+    alignItems: "center"
   },
   title: {
     flexGrow: 1,
@@ -33,6 +34,9 @@ export default function NavBar() {
     // <div className={classes.root}>
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
+        <IconButton>
+          <BoomtownLogo />
+        </IconButton>
         <IconButton
           edge="start"
           className={classes.menuButton}
@@ -41,9 +45,9 @@ export default function NavBar() {
         >
           {/* <MenuIcon /> */}
         </IconButton>
-        <IconButton aria-label="search" color="inherit">
-          {/* <SearchIcon /> */}
-        </IconButton>
+        {/* <IconButton aria-label="search" color="inherit"> */}
+        {/* <SearchIcon /> */}
+        {/* </IconButton> */}
         <IconButton
           aria-label="display more actions"
           edge="end"

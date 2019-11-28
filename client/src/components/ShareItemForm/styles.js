@@ -1,7 +1,8 @@
 const styles = theme => ({
   mainForm: {
     marginLeft: 50,
-    height: 500,
+    width: 415,
+    height: 520,
     display: "flex",
     flexDirection: "column"
   },
