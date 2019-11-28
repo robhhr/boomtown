@@ -16,17 +16,19 @@ import { withStyles } from "@material-ui/core/styles";
 */
 import ShareItemForm from "../../components/ShareItemForm";
 import { ShareItemPreview } from "../../components/ShareItemPreview/ShareItemPreview";
+import "../../components/ShareItemPreview/CardPreview/share.css";
+import NavBar from "../../components/NavBar/NavBar";
 
 const Share = ({ classes, viewer }) => {
   return (
-    <div>
-      <p>
-        This is the share page located at <code>/share</code>.
-        <ShareItemForm />
+    <>
+      <NavBar />
+      <div className="share-container">
         <ShareItemPreview />
+        <ShareItemForm />
         {/* <ShareItemForm />        <ShareItemPreview /> */}
-      </p>
-    </div>
+      </div>
+    </>
   );
 };
 

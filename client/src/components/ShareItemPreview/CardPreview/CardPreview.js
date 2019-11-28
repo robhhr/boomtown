@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "@material-ui/core";
+import { Card, Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -9,10 +9,12 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 
-const CardPreview = () => {
+const CardPreview = ({ imageURL, itemowner, title, description }) => {
   const useStyles = makeStyles({
     card: {
-      maxWidth: 345
+      width: 425,
+      height: 500,
+      marginRight: 50
     }
   });
 
@@ -23,27 +25,24 @@ const CardPreview = () => {
       <CardActionArea>
         <CardMedia
           component="img"
-          alt="Contemplative Reptile"
-          height="140"
-          image="http://placecorgi.com/200/200"
+          alt="item-image"
+          height="200"
+          image={imageURL || "http://placecorgi.com/500/500"}
           title="Pepping dog"
         />
         <CardContent>
+          <Avatar src={itemowner} />
           <Typography gutterBottom variant="h5" component="h2">
-            Dog
+            {title} hello title
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            {description} hello description
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
+          Borrow
         </Button>
       </CardActions>
     </Card>

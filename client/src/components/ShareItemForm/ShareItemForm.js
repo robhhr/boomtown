@@ -35,9 +35,9 @@ class ShareItemForm extends Component {
             }}
             render={({ handleSubmit, form }) => (
               <form className={classes.mainForm} onSubmit={handleSubmit}>
-                <h1>Share. Borrow. Prosper.</h1>
+                <h1 className={classes.formTitle}>Share. Borrow. Prosper.</h1>
 
-                <div>
+                <div className={classes.itemForm}>
                   {/* Item image */}
                   <FormControl className={classes.formControl}>
                     <Field
