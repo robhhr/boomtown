@@ -1,5 +1,4 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
 // import styles from "./styles";
 // import ShareForm from "../../components/ShareItemForm/ShareItemForm";
 // import ShareItemPreview from "../../components/ShareItemPreview/index";

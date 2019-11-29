@@ -1,13 +1,7 @@
 import React, { Component } from "react";
 import { ItemPreviewContext } from "../../context/ItemPreviewProvider";
 import { Form, Field } from "react-final-form";
-import {
-  FormControl,
-  InputLabel,
-  Input,
-  Select,
-  Button
-} from "@material-ui/core";
+import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 
