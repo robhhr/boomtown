@@ -27,8 +27,13 @@ class ShareItemForm extends Component {
               };
               // console.log("hey");
             }}
+            validate={() => console.log("TODO: validate input")}
             render={({ handleSubmit, form }) => (
-              <form className={classes.mainForm} onSubmit={handleSubmit}>
+              <form
+                className={classes.mainForm}
+                onSubmit={handleSubmit}
+                onChange={e => updatePreview(e.target.name, e.target.value)}
+              >
                 <h1 className={classes.formTitle}>Share. Borrow. Prosper.</h1>
 
                 <div className={classes.itemForm}>
@@ -44,39 +49,36 @@ class ShareItemForm extends Component {
 
                   {/* Item name */}
                   <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="name" className={classes.itemName}>
-                      Name your Item
-                    </InputLabel>
-                    <Field name="item-name">
-                      {({ input }) => (
+                    <InputLabel htmlFor="title">Name your Item</InputLabel>
+                    <Field
+                      name="title"
+                      render={({ input }) => (
                         <Input
-                          id="item-name"
+                          id="title"
                           type="text"
                           inputProps={{ ...input, autoComplete: "off" }}
                           value={input.value}
                         />
                       )}
-                    </Field>
+                    />
                   </FormControl>
 
                   {/* Item description */}
                   <FormControl className={classes.formControl}>
-                    <InputLabel
-                      htmlFor="description"
-                      className={classes.itemInput}
-                    >
+                    <InputLabel htmlFor="description">
                       Describe your Item
                     </InputLabel>
-                    <Field name="item-description">
-                      {({ input }) => (
+                    <Field
+                      name="description"
+                      render={({ input }) => (
                         <Input
-                          id="item-description"
+                          id="description"
                           type="text"
                           inputProps={{ ...input, autoComplete: "off" }}
                           value={input.value}
                         />
                       )}
-                    </Field>
+                    />
                   </FormControl>
 
                   {/* Item tags */}

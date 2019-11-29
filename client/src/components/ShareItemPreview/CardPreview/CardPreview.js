@@ -32,10 +32,10 @@ const CardPreview = ({ imageURL, itemowner, title, description }) => {
         <CardContent>
           <Avatar src={itemowner} />
           <Typography gutterBottom variant="h5" component="h2">
-            {title} hello title
+            {title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {description} hello description
+            {description}
           </Typography>
         </CardContent>
       </CardActionArea>

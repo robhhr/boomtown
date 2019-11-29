@@ -10,7 +10,10 @@ export class ShareItemPreview extends Component {
       <ItemPreviewContext.Consumer>
         {({ state }) => (
           <>
-            <CardPreview />
+            <CardPreview
+              title={state.item.title}
+              description={state.item.description}
+            />
           </>
         )}
       </ItemPreviewContext.Consumer>
