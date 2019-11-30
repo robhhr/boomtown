@@ -25,9 +25,8 @@ class ShareItemForm extends Component {
                   user: values
                 }
               };
-              // console.log("hey");
             }}
-            validate={() => console.log("TODO: validate input")}
+            validate={values => console.log(values)}
             render={({ handleSubmit, form }) => (
               <form
                 className={classes.mainForm}

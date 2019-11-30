@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Item() {
+const Item = () => {
   const [spacing, setSpacing] = React.useState(2);
   const classes = useStyles();
 
@@ -36,21 +36,15 @@ export default function Item() {
 
   return (
     <Grid container className={classes.root} spacing={2}>
+      {/* {items.map(item => ( */}
       <Grid item xs={3} className={classes.itemContainer}>
         <Grid container spacing={spacing} className={classes.itemList}>
           <ShareItemPreview />
         </Grid>
       </Grid>
-      <Grid item xs={3} className={classes.itemContainer}>
-        <Grid container spacing={spacing} className={classes.itemList}>
-          <ShareItemPreview />
-        </Grid>
-      </Grid>
-      <Grid item xs={3} className={classes.itemContainer}>
-        <Grid container spacing={spacing} className={classes.itemList}>
-          <ShareItemPreview />
-        </Grid>
-      </Grid>
+      {/* ))} */}
     </Grid>
   );
-}
+};
+
+export default Item;

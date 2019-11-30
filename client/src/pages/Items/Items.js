@@ -4,11 +4,15 @@ import styles from "./styles";
 import Item from "../../components/Item";
 import NavBar from "../../components/NavBar/NavBar";
 
+const ItemContainer = ({ classes, items }) => {
+  return <Item />;
+};
+
 const Items = ({ classes }) => {
   return (
     <div>
       <NavBar />
-      <Item />
+      <ItemContainer />
     </div>
   );
 };
