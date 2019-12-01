@@ -14,8 +14,17 @@ const styles = theme => ({
     display: "flex",
     flexDirection: "column"
   },
+  formControlDescription: {
+    display: "flex",
+    flexDirection: "column",
+    height: "120px",
+    justifyContent: "flex-end"
+  },
   itemInput: {
     width: "80%"
+  },
+  submitForm: {
+    marginTop: "30px"
   }
 });
 

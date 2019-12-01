@@ -16,19 +16,30 @@ const Routes = () => {
   return (
     <ViewerContext.Consumer>
       {({ viewer, loading }) => {
-        console.log("viewer", viewer);
-        return (
-          <Router>
-            <Switch>
-              <Route exact path="/items" component={Items} />
-              <Route path="/welcome" component={Home} />
-              <Route path="/share" component={Share} />
-              <Route path="/profile" component={Profile} />
-              <Route path="/profile/user:Id" component={Profile} />
-              <Redirect from="/" to="/welcome" /* to='/items' */ />
-            </Switch>
-          </Router>
-        );
+        if (!viewer) {
+          console.log("viewer", viewer);
+          return (
+            <Router>
+              <Switch>
+                <Route exact path="/items" component={Items} />
+                <Route path="/welcome" component={Home} />
+                <Route path="/share" component={Share} />
+                <Route path="/profile" component={Profile} />
+                <Route path="/profile/user:Id" component={Profile} />
+                <Redirect from="/" to="/welcome" /* to='/items' */ />
+              </Switch>
+            </Router>
+          );
+        } else {
+          return (
+            <Router>
+              <Switch>
+                <Route path="/welcome" component={Home} />
+                <Redirect from="/" to="/welcome" /* to='/items' */ />
+              </Switch>
+            </Router>
+          );
+        }
       }}
     </ViewerContext.Consumer>
   );

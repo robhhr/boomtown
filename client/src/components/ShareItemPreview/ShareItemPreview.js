@@ -13,6 +13,8 @@ export class ShareItemPreview extends Component {
             <CardPreview
               title={state.item.title}
               description={state.item.description}
+              imageURL={state.item.imageURL}
+              itemowner={state.item.itemowner}
             />
           </>
         )}

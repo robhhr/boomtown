@@ -105,13 +105,8 @@ export const VIEWER_QUERY = gql`
   }
 `;
 export const LOGOUT_MUTATION = gql`
-  mutation logout($user: Logout!) {
-    logout(user: $user) {
-      token
-      user {
-        id
-      }
-    }
+  mutation logout {
+    logout
   }
 `;
 

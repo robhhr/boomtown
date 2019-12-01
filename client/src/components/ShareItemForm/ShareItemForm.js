@@ -1,32 +1,47 @@
 import React, { Component } from "react";
 import { ItemPreviewContext } from "../../context/ItemPreviewProvider";
 import { Form, Field } from "react-final-form";
-import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
+import {
+  FormControl,
+  InputLabel,
+  Input,
+  Button,
+  Select,
+  MenuItem,
+  Checkbox,
+  ListItemText
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 
 class ShareItemForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: "" };
+    this.state = { value: "", tags: [] };
   }
 
   render() {
     const { classes } = this.props;
-    // console.log(this.props.classes);
+    const { tags } = this.props;
+
+    const handleTags = e => {
+      this.setState({
+        tags: e.target.value
+      });
+    };
 
     return (
       <ItemPreviewContext.Consumer>
         {({ state, updatePreview, resetPreview }) => (
           <Form
             onSubmit={values => {
-              const user = {
-                variables: {
-                  user: values
-                }
-              };
+              // const user = {
+              //   variables: {
+              //     user: values
+              //   }
+              // };
             }}
-            validate={values => console.log(values)}
+            // validate={values => console.log(values)}
             render={({ handleSubmit, form }) => (
               <form
                 className={classes.mainForm}
@@ -63,7 +78,7 @@ class ShareItemForm extends Component {
                   </FormControl>
 
                   {/* Item description */}
-                  <FormControl className={classes.formControl}>
+                  <FormControl className={classes.formControlDescription}>
                     <InputLabel htmlFor="description">
                       Describe your Item
                     </InputLabel>
@@ -88,14 +103,52 @@ class ShareItemForm extends Component {
                     >
                       Add some tags
                     </InputLabel>
-                    {/* <Field
-                    render={({ input }) => (
-                    )}
-                  /> */}
+                    <Field
+                      name="tags"
+                      render={({ input }) => {
+                        return (
+                          <>
+                            <Select
+                              id="tags"
+                              className={classes.formControl}
+                              multiple
+                              input={<Input />}
+                              value={this.state.tags}
+                              onChange={e => this.handleTags}
+                              renderValue={values =>
+                                values
+                                  .map(
+                                    value =>
+                                      tags.tags.find(({ id }) => id === value)
+                                        .title
+                                  )
+                                  .join(", ")
+                              }
+                            >
+                              {tags &&
+                                tags.map(tag => (
+                                  <MenuItem key={tag.title} value={tag.title}>
+                                    <Checkbox
+                                      checked={
+                                        this.state.selectTags.indexOf(tag) > -1
+                                      }
+                                    />
+                                    <ListItemText primary={tag.title} />
+                                  </MenuItem>
+                                ))}
+                            </Select>
+                          </>
+                        );
+                      }}
+                    />
                   </FormControl>
 
                   {/* Share button */}
-                  <Button type="submit" varient="outlined">
+                  <Button
+                    type="submit"
+                    className={classes.submitForm}
+                    variant="outlined"
+                  >
                     Share
                   </Button>
                 </div>

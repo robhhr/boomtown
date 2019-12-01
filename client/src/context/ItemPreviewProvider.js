@@ -6,7 +6,7 @@ const initialState = {
   title: "Name your Item",
   description: "Describe item",
   tags: [],
-  imageURL: "http://placecorgi.com/500/500",
+  imageURL: "https://www.himgs.com/imagenes/hello/social/hello-fb-logo.png",
   itemowner: {},
   created: new Date()
 };
@@ -17,7 +17,7 @@ class ItemPreviewProvider extends Component {
     this.state = { item: initialState };
   }
 
-  updatePreview = (name, value) => {
+  updatePreview = (name, value, item) => {
     const itemUpdate = { ...this.state.item, [name]: value };
     this.setState({ item: itemUpdate });
   };

@@ -14,13 +14,6 @@ import {
   VIEWER_QUERY
 } from "../../apollo/queries";
 // import validate from "./helpers/validation";
-
-/**
- * @TODO: Uncomment the following lines when authentication is added to the form
- *
- *
- */
-
 import styles from "./styles";
 
 class AccountForm extends Component {
@@ -45,6 +38,7 @@ class AccountForm extends Component {
               user: values
             }
           };
+          this.state.formToggle ? login(user) : signup(user);
           console.log(values);
           if (this.state.formToggle) {
             console.log(this.props);

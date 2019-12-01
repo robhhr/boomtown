@@ -8,7 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
-const CardPreview = ({ imageURL, itemowner, title, description }) => {
+const CardPreview = ({ itemowner, title, description, imageURL }) => {
   const useStyles = makeStyles({
     card: {
       width: 415,
@@ -26,9 +26,11 @@ const CardPreview = ({ imageURL, itemowner, title, description }) => {
           component="img"
           alt="item-image"
           height="200"
-          image={imageURL || "http://placecorgi.com/500/500"}
+          image={imageURL}
           title="Pepping dog"
+          itemowner={itemowner}
         />
+
         <CardContent>
           <Avatar src={itemowner} />
           <Typography gutterBottom variant="h5" component="h2">
