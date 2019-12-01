@@ -7,7 +7,6 @@ import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import { LOGOUT_MUTATION } from "../../../apollo/queries";
-import client from "../../../apollo/index";
 
 const MenuList = () => {
   const expandableMenu = ["Your Profile", "Sign Out"];

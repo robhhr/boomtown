@@ -5,11 +5,12 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFingerprint } from "@fortawesome/free-solid-svg-icons";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import BoomtownLogo from "./BoomtownLogo/BoomtownLogo";
 
 const useStyles = makeStyles(theme => ({
@@ -24,6 +25,17 @@ const useStyles = makeStyles(theme => ({
   },
   toolbar: {
     justifyContent: "space-between"
+  },
+  addIcon: {
+    color: "black",
+    fontSize: "18px"
+  },
+  searchText: {
+    fontSize: "14px"
+  },
+  menuContainer: {
+    display: "flex",
+    alignItems: "center"
   }
 }));
 
@@ -32,6 +44,7 @@ export default function MenuAppBar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const history = useHistory();
 
   const handleChange = event => {
     setAuth(event.target.checked);
@@ -57,8 +70,19 @@ export default function MenuAppBar() {
           >
             <BoomtownLogo />
           </IconButton>
+          <div className={classes.menuContainer}>
+            {history.location.pathname !== "/share" && (
+              <Link to="/share">
+                <IconButton>
+                  <FontAwesomeIcon
+                    className={classes.addIcon}
+                    icon={faPlusCircle}
+                  />{" "}
+                  <p className={classes.searchText}>SHARE SOMETHING</p>
+                </IconButton>
+              </Link>
+            )}
 
-          {auth && (
             <div>
               <IconButton
                 aria-label="account of current user"
@@ -99,7 +123,7 @@ export default function MenuAppBar() {
                 </MenuItem>
               </Menu>
             </div>
-          )}
+          </div>
         </Toolbar>
       </AppBar>
     </div>

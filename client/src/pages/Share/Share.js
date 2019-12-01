@@ -17,19 +17,18 @@ import ShareItemForm from "../../components/ShareItemForm";
 import { ShareItemPreview } from "../../components/ShareItemPreview/ShareItemPreview";
 import "../../components/ShareItemPreview/CardPreview/share.css";
 import NavBar from "../../components/NavBar/NavBar";
-import { ViewerProvider } from "../../context/ViewerProvider";
+// import { ViewerProvider } from "../../context/ViewerProvider";
 
 const Share = ({ classes, viewer }) => {
   return (
     <>
       <NavBar />
-      <ViewerProvider.Consumer>
-        <div className="share-container">
-          <ShareItemPreview />
-          <ShareItemForm />
-          {/* <ShareItemForm />        <ShareItemPreview /> */}
-        </div>
-      </ViewerProvider.Consumer>
+      {/* <ViewerProvider.Consumer> */}
+      <div className="share-container">
+        <ShareItemPreview />
+        <ShareItemForm />
+      </div>
+      {/* </ViewerProvider.Consumer> */}
     </>
   );
 };
