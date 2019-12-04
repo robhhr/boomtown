@@ -44,8 +44,8 @@ class AccountForm extends Component {
             console.log(this.props);
             login(user);
             console.log("im trying to login");
-          } else {
-            console.log("im trying to signup");
+            // } else {
+            //   console.log("im trying to signup");
           }
         }}
         // validate={validateValues}

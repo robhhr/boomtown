@@ -9,6 +9,7 @@ import registerServiceWorker from "./registerServiceWorker";
 import theme from "./theme";
 import { ViewerProvider } from "./context/ViewerProvider";
 import client from "./apollo";
+import { BrowserRouter } from "react-router-dom";
 
 /**
  * @TODO: Initialize Apollo Client
@@ -64,7 +65,9 @@ const App = () => {
         <CssBaseline />
         <ViewerProvider>
           <ItemPreviewProvider>
-            <Routes />
+            <BrowserRouter>
+              <Routes />
+            </BrowserRouter>
           </ItemPreviewProvider>
         </ViewerProvider>
       </MuiThemeProvider>
