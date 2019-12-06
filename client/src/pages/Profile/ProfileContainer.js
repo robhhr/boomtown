@@ -7,7 +7,11 @@ import Profile from "./Profile";
 
 class ProfileContainer extends Component {
   render() {
-    return <Profile />;
+    return (
+      <>
+        <Profile />
+      </>
+    );
   }
 }
 

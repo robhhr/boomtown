@@ -109,28 +109,20 @@ class ShareItemForm extends Component {
                         return (
                           <>
                             <Select
-                              id="tags"
+                              // id="tags"
                               className={classes.formControl}
                               multiple
                               input={<Input />}
                               value={this.state.tags}
-                              onChange={e => this.handleTags}
-                              renderValue={values =>
-                                values
-                                  .map(
-                                    value =>
-                                      tags.tags.find(({ id }) => id === value)
-                                        .title
-                                  )
-                                  .join(", ")
-                              }
+                              onChange={handleTags}
+                              renderValue={selected => selected.join(", ")}
                             >
                               {tags &&
                                 tags.map(tag => (
                                   <MenuItem key={tag.title} value={tag.title}>
                                     <Checkbox
                                       checked={
-                                        this.state.selectTags.indexOf(tag) > -1
+                                        this.state.tags.indexOf(tag) > -1
                                       }
                                     />
                                     <ListItemText primary={tag.title} />

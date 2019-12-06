@@ -32,7 +32,7 @@ const Routes = () => {
               <Route path="/items" component={Items} />
               <Route path="/share" component={Share} />
               <Route path="/profile" component={Profile} />
-              <Route path="/profile/user:Id" component={Profile} />
+              <Route path="/profile/userid" component={Profile} />
               <Redirect from="*" to="/items" /* to='/items' */ />
             </Switch>
           );
