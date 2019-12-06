@@ -1,7 +1,6 @@
 const styles = theme => ({
   profileContainer: {
     backgroundColor: "#212121",
-    height: "100vh",
     width: "100%",
     display: "flex",
     flexDirection: "column",
@@ -17,6 +16,9 @@ const styles = theme => ({
   sharedTitle: {
     alignSelf: "flex-start",
     paddingLeft: "70px"
+  },
+  profileContent: {
+    width: "auto"
   }
 });
 

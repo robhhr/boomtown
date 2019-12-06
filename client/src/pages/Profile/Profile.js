@@ -3,6 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import NavBar from "../../components/NavBar";
 import { Card, CardContent, Avatar, Typography } from "@material-ui/core";
+import Item from "../../components/Item";
 
 const Profile = ({ classes, state, fullname }) => {
   return (
@@ -31,6 +32,7 @@ const Profile = ({ classes, state, fullname }) => {
             Shared Items
           </Typography>
         </div>
+        <Item className={classes.profileContent} />
       </div>
     </>
   );
