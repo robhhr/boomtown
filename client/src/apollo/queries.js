@@ -76,8 +76,8 @@ export const ALL_TAGS_QUERY = gql`
 `;
 
 export const ADD_ITEM_MUTATION = gql`
-  mutation addItem($item: NewItemInput!) {
-    addItem(item: $item) {
+  mutation addItem($input: NewItemInput!) {
+    addItem(input: $input) {
       id
       title
       description
@@ -116,6 +116,8 @@ export const SIGNUP_MUTATION = gql`
       token
       user {
         id
+        fullname
+        email
       }
     }
   }
@@ -127,6 +129,8 @@ export const LOGIN_MUTATION = gql`
       token
       user {
         id
+        fullname
+        email
       }
     }
   }
