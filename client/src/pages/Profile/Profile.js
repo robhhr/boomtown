@@ -5,7 +5,7 @@ import NavBar from "../../components/NavBar";
 import { Card, CardContent, Avatar, Typography } from "@material-ui/core";
 import Item from "../../components/Item";
 
-const Profile = ({ classes, state, fullname }) => {
+const Profile = ({ classes, state, fullname, data }) => {
   return (
     <>
       <NavBar />
@@ -14,14 +14,14 @@ const Profile = ({ classes, state, fullname }) => {
           <CardContent>
             <div className={classes.userContainer}>
               <Avatar>lol</Avatar>
-              <Typography>fullname</Typography>
+              <Typography>{/* {data.user.fullname} */}Roberto</Typography>
             </div>
             <div className={classes.profileItems}>
               <p>
                 <span>0</span> items shared,
               </p>
               <p>
-                <span>0</span> items borrowed
+                <span>{/*{data.user.items.length} */}0</span> items borrowed
               </p>
             </div>
             <p>"No bio provided"</p>

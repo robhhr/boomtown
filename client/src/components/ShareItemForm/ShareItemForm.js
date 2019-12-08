@@ -32,6 +32,16 @@ class ShareItemForm extends Component {
       });
     };
 
+    const itemTags = [
+      "Household Items",
+      "Tools",
+      "Electronics",
+      "Physical Media",
+      "Sporting Goods",
+      "Musical Instruments",
+      "Recreational Equiqment"
+    ];
+
     return (
       <ItemPreviewContext.Consumer>
         {({ state, updatePreview, resetPreview }) => (
@@ -131,28 +141,31 @@ class ShareItemForm extends Component {
                                   <Select
                                     // id="tags"
                                     className={classes.formControl}
+                                    fullWidth
                                     multiple
                                     input={<Input />}
                                     value={this.state.tags}
-                                    onChange={handleTags}
+                                    onChange={e => {
+                                      this.setState({
+                                        tags: e.target.value
+                                      });
+                                      // updatePreview({
+                                      //   tags: this.createTags(e.target.value)
+                                      // });
+                                    }}
                                     renderValue={selected =>
                                       selected.join(", ")
                                     }
+                                    input={<Input />}
                                   >
-                                    {tags &&
-                                      tags.map(tag => (
-                                        <MenuItem
-                                          key={tag.title}
-                                          value={tag.title}
-                                        >
-                                          <Checkbox
-                                            checked={
-                                              this.state.tags.indexOf(tag) > -1
-                                            }
-                                          />
-                                          <ListItemText primary={tag.title} />
-                                        </MenuItem>
-                                      ))}
+                                    {itemTags.map(option => (
+                                      <MenuItem
+                                        key={itemTags[2]}
+                                        value={itemTags[2]}
+                                      >
+                                        {option.label}
+                                      </MenuItem>
+                                    ))}
                                   </Select>
                                 </>
                               );
