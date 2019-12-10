@@ -149,9 +149,9 @@ class ShareItemForm extends Component {
                                       this.setState({
                                         tags: e.target.value
                                       });
-                                      // updatePreview({
-                                      //   tags: this.createTags(e.target.value)
-                                      // });
+                                      updatePreview({
+                                        tags: this.createTags(e.target.value)
+                                      });
                                     }}
                                     renderValue={selected =>
                                       selected.join(", ")
