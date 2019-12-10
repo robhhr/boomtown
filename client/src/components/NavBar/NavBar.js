@@ -12,6 +12,9 @@ import { faFingerprint } from "@fortawesome/free-solid-svg-icons";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import BoomtownLogo from "./BoomtownLogo/BoomtownLogo";
+import { Mutation } from "react-apollo";
+import { LOGOUT_MUTATION } from "../../apollo/queries";
+import client from "../../apollo";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -117,10 +120,24 @@ export default function MenuAppBar() {
                     Your Profile
                   </Link>
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <Mutation
+                  mutation={LOGOUT_MUTATION}
+                  onCompleted={() => client.resetStore()}
+                >
+                  {logout => (
+                    <MenuItem onClick={logout}>
+                      <FontAwesomeIcon
+                        icon={faPowerOff}
+                        className="menu-icon"
+                      />
+                      Sign Out
+                    </MenuItem>
+                  )}
+                </Mutation>
+                {/* <MenuItem onClick={handleClose}>
                   <FontAwesomeIcon icon={faPowerOff} className="menu-icon" />
                   Sign Out
-                </MenuItem>
+                </MenuItem> */}
               </Menu>
             </div>
           </div>

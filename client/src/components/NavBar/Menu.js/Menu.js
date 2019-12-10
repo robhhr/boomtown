@@ -38,13 +38,12 @@ const MenuList = () => {
         <Link to="/profile">
           <MenuItem onClick={handleClose}>Your Profile</MenuItem>
         </Link>
-        {/* <Mutation mutation={LOGOUT_MUTATION}>
-          {
-            (LOGOUT_MUTATION = () => (
-              <MenuItem onClick={LOGOUT_MUTATION}>Log Out</MenuItem>
-            ))
-          }
-        </Mutation> */}
+        <Mutation
+          mutation={LOGOUT_MUTATION}
+          onCompleted={() => client.resetStore()}
+        >
+          <MenuItem onClick={logout}>Log Out</MenuItem>
+        </Mutation>
       </Menu>
     </>
   );
