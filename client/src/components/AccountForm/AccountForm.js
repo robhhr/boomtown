@@ -144,7 +144,7 @@ class AccountForm extends Component {
 // @TODO: Use compose to add the login and signup mutations to this components props.
 // @TODO: Refetch the VIEWER_QUERY to reload the app and access authenticated routes.
 
-const refetchQuery = [
+const refetchQueries = [
   {
     query: VIEWER_QUERY
   }
@@ -153,13 +153,13 @@ const refetchQuery = [
 export default compose(
   graphql(SIGNUP_MUTATION, {
     options: {
-      refetchQuery: { refetchQuery },
-      name: "signup"
-    }
+      refetchQueries
+    },
+    name: "signup"
   }),
   graphql(LOGIN_MUTATION, {
     options: {
-      refetchQuery: () => refetchQuery
+      refetchQueries
     },
     name: "login"
   }),
