@@ -15,6 +15,7 @@ export class ShareItemPreview extends Component {
               description={state.item.description}
               imageURL={state.item.imageURL}
               itemowner={state.item.itemowner}
+              tags={state.item.tags}
             />
           </>
         )}
