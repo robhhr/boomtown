@@ -45,7 +45,7 @@ class ShareItemForm extends Component {
                     onChange={e => updatePreview(e.target.name, e.target.value)}
                     className={classes.form}
                   >
-                    <FormControl fullWidth className={classes.formControl}>
+                    <FormControl className={classes.formControl}>
                       <h1 className={classes.formTitle}>
                         Share. Borrow. Prosper.
                       </h1>
@@ -54,7 +54,7 @@ class ShareItemForm extends Component {
                     <div className={classes.itemForm}>
                       {/* Item image */}
                       <FormControl className={classes.formControl}>
-                        {/* <InputLabel htmlFor="imageUrl">Add image</InputLabel> */}
+                        <InputLabel htmlFor="imageUrl">Add image</InputLabel>
                         <Field
                           name="imageURL"
                           render={({ input, meta }) => (
@@ -93,10 +93,7 @@ class ShareItemForm extends Component {
                       </FormControl>
 
                       {/* Item description */}
-                      <FormControl
-                        fullWidth
-                        className={classes.formControlDescription}
-                      >
+                      <FormControl className={classes.formControlDescription}>
                         <InputLabel htmlFor="description">
                           Describe your Item
                         </InputLabel>
@@ -134,7 +131,6 @@ class ShareItemForm extends Component {
                                 <Select
                                   id="tags"
                                   className={classes.formControl}
-                                  fullWidth
                                   multiple
                                   value={value || []}
                                   onChange={e =>
